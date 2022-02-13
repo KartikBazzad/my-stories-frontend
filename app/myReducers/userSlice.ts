@@ -5,7 +5,6 @@ export type InitialUserState = {
   userId: string;
   username: string;
   photo: string;
-
   token: string;
 };
 

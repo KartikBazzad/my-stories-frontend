@@ -6,6 +6,9 @@ import BackgroundCard from "../../../components/StoryComponents/cards/Background
 import TextPlacementCard from "../../../components/StoryComponents/cards/textPlacementCard";
 import TextSizeCard from "../../../components/StoryComponents/cards/TextSizeCard";
 import FinalStory from "../../../components/StoryComponents/FinalStory";
+import BackgroundColorGroup from "../../../components/StoryComponents/groups/BackgroundColorGroup";
+import TextPlacementGroup from "../../../components/StoryComponents/groups/TextPlacementGroup";
+import TextSizeGroup from "../../../components/StoryComponents/groups/TextSizeGroup";
 
 function Index() {
   useEffect(() => {}, []);
@@ -18,29 +21,14 @@ function Index() {
       </Head>
       <main>
         <Header />
-        <div>
-          <FinalStory />
-          <div>
-            Select Position
-            <div className="flex flex-wrap gap-2">
-              {textPlacement.map((x) => {
-                return (
-                  <TextPlacementCard key={x.id} textPlacement={x.position} />
-                );
-              })}
-            </div>
+        <div className="flex flex-col-reverse md:flex-row ">
+          <div className="flex md:max-w-sm overflow-auto flex-col">
+            <TextPlacementGroup />
+            <BackgroundColorGroup />
+            <TextSizeGroup />
           </div>
-          <div>Select Background</div>
-          <div className="flex flex-wrap gap-2">
-            {colors.map((color) => {
-              return <BackgroundCard key={color.id} color={color} />;
-            })}
-          </div>
-          <div>Select Text Size</div>
-          <div className="flex flex-wrap gap-2">
-            {textSize.map((x) => {
-              return <TextSizeCard key={x.headingSize} font={x} />;
-            })}
+          <div className="flex">
+            <FinalStory />
           </div>
         </div>
       </main>

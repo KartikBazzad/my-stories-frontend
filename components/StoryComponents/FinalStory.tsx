@@ -1,3 +1,4 @@
+import Router from "next/router";
 import React, { useEffect } from "react";
 import { useAppSelector } from "../../app/myHooks";
 
@@ -5,7 +6,9 @@ function FinalStory() {
   const story = useAppSelector((state) => state.storyReducer);
   const user = useAppSelector((state) => state.userReducer);
   useEffect(() => {
-    console.log(story);
+    if (!story.content && !story.caption && !story.title) {
+      Router.push("/stories/create");
+    }
   }, [story]);
   return (
     <div>
