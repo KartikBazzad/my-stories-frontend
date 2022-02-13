@@ -1,10 +1,6 @@
 import Head from "next/head";
 import React, { useEffect } from "react";
-import { useAppSelector } from "../../../app/myHooks";
 import Header from "../../../components/Header/Header";
-import BackgroundCard from "../../../components/StoryComponents/cards/BackgroundCard";
-import TextPlacementCard from "../../../components/StoryComponents/cards/textPlacementCard";
-import TextSizeCard from "../../../components/StoryComponents/cards/TextSizeCard";
 import FinalStory from "../../../components/StoryComponents/FinalStory";
 import BackgroundColorGroup from "../../../components/StoryComponents/groups/BackgroundColorGroup";
 import TextPlacementGroup from "../../../components/StoryComponents/groups/TextPlacementGroup";
@@ -22,7 +18,7 @@ function Index() {
       <main>
         <Header />
         <div className="flex flex-col-reverse md:flex-row ">
-          <div className="flex md:max-w-sm overflow-auto flex-col">
+          <div className="flex md:max-w-lg overflow-auto flex-col">
             <TextPlacementGroup />
             <BackgroundColorGroup />
             <TextSizeGroup />

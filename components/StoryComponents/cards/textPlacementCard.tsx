@@ -7,13 +7,14 @@ function TextPlacementCard({ textPlacement }: any) {
   const dispatch = useAppDispatch();
   useEffect(() => {}, []);
   function changePosition() {
+    console.log(textPlacement);
     return dispatch(placement({ ...story, placement: textPlacement }));
   }
   return (
     <div className="w-40 h-40">
       <div
         onClick={changePosition}
-        className={`flex ${textPlacement} w-40 h-40 bg-gray-800  shadow`}
+        className={`flex ${textPlacement} w-40 h-40 ${story.background}  shadow`}
       >
         <div className="">
           <div className="bg-white w-8 m-1 h-3"></div>
