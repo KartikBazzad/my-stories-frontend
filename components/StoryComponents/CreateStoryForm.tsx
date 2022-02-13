@@ -1,7 +1,7 @@
 import Router from "next/router";
 import React, { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../app/myHooks";
-import { createStory } from "../../app/myReducers/storyReducer";
+import { createStory, defaultState } from "../../app/myReducers/storyReducer";
 const initialPayload = {
   title: "",
   caption: "",
@@ -29,6 +29,11 @@ function CreateStoryForm() {
     e.preventDefault();
     dispatch(createStory({ ...story, ...payload }));
     Router.push("/stories/create/customize");
+  }
+
+  function resetStory() {
+    setPayload(initialPayload);
+    return dispatch(defaultState());
   }
   return (
     <div className="flex flex-col items-center justify-center p-8">
@@ -84,7 +89,11 @@ function CreateStoryForm() {
             <button className="button button-primary" type="submit">
               Create
             </button>
-            <button className="button button-ghost" type="reset">
+            <button
+              onClick={resetStory}
+              type="reset"
+              className="button button-ghost"
+            >
               Reset
             </button>
           </div>

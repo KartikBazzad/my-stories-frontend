@@ -7,15 +7,15 @@ function BackgroundCard({ color }: any) {
   useEffect(() => {}, []);
   const dispatch = useAppDispatch();
   const setBackground = () => {
-    dispatch(background({ ...story, background: color }));
-    console.log(story);
+    console.log(color);
+    dispatch(background({ ...story, background: color.color }));
     return;
   };
   return (
     <div>
       <div
         onClick={setBackground}
-        className={`w-40 cursor-pointer h-40 ${color}`}
+        className={`w-40 cursor-pointer h-40 ${color.color}`}
       >
         <div>
           {story.title}

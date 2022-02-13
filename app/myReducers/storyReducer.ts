@@ -40,7 +40,7 @@ const storySlice = createSlice({
       ...state,
       ...action.payload,
     }),
-    default: (state) => ({
+    defaultState: (state) => ({
       ...state,
       title: "",
       caption: "",
@@ -53,6 +53,6 @@ const storySlice = createSlice({
   },
 });
 
-export const { createStory, setTextSize, placement, background } =
+export const { createStory, setTextSize, defaultState, placement, background } =
   storySlice.actions;
 export default storySlice.reducer;
