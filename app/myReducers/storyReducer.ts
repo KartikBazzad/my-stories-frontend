@@ -14,9 +14,9 @@ const initialState: InitialStoryState = {
   title: "",
   caption: "",
   content: "",
-  headingSize: "",
-  contentSize: "",
-  placement: "",
+  headingSize: "text-base",
+  contentSize: "text-sm",
+  placement: "items-center justify-center",
   background: "bg-gray-900 text-white",
 };
 
@@ -39,6 +39,16 @@ const storySlice = createSlice({
     background: (state, action: PayloadAction<any>) => ({
       ...state,
       ...action.payload,
+    }),
+    default: (state) => ({
+      ...state,
+      title: "",
+      caption: "",
+      content: "",
+      headingSize: "",
+      contentSize: "",
+      placement: "items-center justify-center",
+      background: "bg-gray-900 text-white",
     }),
   },
 });
