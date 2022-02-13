@@ -15,11 +15,11 @@ function BackgroundCard({ color }: any) {
     <div>
       <div
         onClick={setBackground}
-        className={`w-40 cursor-pointer h-40 ${color.color}`}
+        className={`w-40 flex items-center justify-center cursor-pointer h-40 ${color.color}`}
       >
-        <div>
-          {story.title}
-          {story.content}
+        <div className="">
+          <div className="w-8 m-1 h-3"></div>
+          <div className="w-8 m-1 h-3"></div>
         </div>
       </div>
     </div>

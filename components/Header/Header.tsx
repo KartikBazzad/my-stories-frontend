@@ -22,7 +22,7 @@ function Header() {
           },
         })
         .then(({ data }) => {
-          return dispatch(login({ ...user, isLoggedIn: true, ...data }));
+          return dispatch(login({ ...user, token, isLoggedIn: true, ...data }));
         })
         .catch((err) => {
           router.push("/");

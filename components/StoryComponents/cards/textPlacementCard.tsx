@@ -11,14 +11,14 @@ function TextPlacementCard({ textPlacement }: any) {
     return dispatch(placement({ ...story, placement: textPlacement }));
   }
   return (
-    <div className="w-40 h-40">
+    <div className="w-36 h-36 cursor-pointer  shadow hover:scale-105">
       <div
         onClick={changePosition}
-        className={`flex ${textPlacement} w-40 h-40 ${story.background}  shadow`}
+        className={`flex ${textPlacement} p-1 w-36 h-36 ${story.background}  shadow`}
       >
         <div className="">
-          <div className="bg-white w-8 m-1 h-3"></div>
-          <div className="bg-white w-8 m-1 h-3"></div>
+          <div className="bg-white w-8 m-1 h-2"></div>
+          <div className="bg-white w-8 m-1 h-2"></div>
         </div>
       </div>
     </div>

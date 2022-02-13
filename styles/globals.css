@@ -8,7 +8,7 @@
     @apply py-2 px-3 font-poppins rounded-sm font-medium;
   }
   .button-primary {
-    @apply bg-purple-500 outline outline-1 text-white outline-purple-500 hover:outline-purple-700 hover:bg-purple-700 hover:outline-offset-1;
+    @apply bg-purple-500 py-3 outline outline-1 text-white outline-purple-500 hover:outline-purple-700 hover:bg-purple-700 hover:outline-offset-1;
   }
   .button-link {
     @apply bg-white py-3 cursor-pointer text-gray-900 text-center;
@@ -24,5 +24,11 @@
   }
   .input {
     @apply font-open-sans p-2 outline-none border;
+  }
+  .tab-button {
+    @apply font-roboto p-4 bg-gray-50 drop-shadow text-center w-full font-semibold;
+  }
+  .button-active {
+    @apply bg-blue-500 py-3 hover:outline outline-blue-500 hover:outline-offset-1 hover:outline-1  cursor-pointer text-white text-center;
   }
 }
