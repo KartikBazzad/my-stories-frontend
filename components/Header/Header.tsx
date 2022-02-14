@@ -1,14 +1,16 @@
 import Link from "next/link";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Menu } from "@headlessui/react";
 import { useAppDispatch, useAppSelector } from "../../app/myHooks";
 import { useCookies } from "react-cookie";
 import axios from "axios";
 import Image from "next/image";
-import { login } from "../../app/myReducers/userSlice";
+import { login, logout } from "../../app/myReducers/userSlice";
 import { useRouter } from "next/router";
+import { logoutUser } from "../../utils/api";
 function Header() {
   const router = useRouter();
+  const [isLogged, setIsLogged] = useState(false);
   const user = useAppSelector((state) => state.userReducer);
   const dispatch = useAppDispatch();
   const token = useCookies(["auth"])[0].auth;
@@ -22,17 +24,24 @@ function Header() {
           },
         })
         .then(({ data }) => {
+          setIsLogged(true);
           return dispatch(login({ ...user, token, isLoggedIn: true, ...data }));
         })
         .catch((err) => {
-          router.push("/");
+          return;
         });
-    } else {
-      router.push("/");
     }
-  }, [user.isLoggedIn]);
+  }, [user.isLoggedIn, user.token, isLogged]);
+
+  function logoutHandler() {
+    logoutUser(user.token).then(() => {
+      setIsLogged(false);
+      window.location.reload();
+      return dispatch(logout());
+    });
+  }
   return (
-    <div className="p-4 flex w-full justify-evenly bg-gray-50 drop-shadow">
+    <div className="p-4 flex w-full items-center justify-evenly shadow  drop-shadow">
       <div className="w-40 sm:w-96 max-w-xs">
         <h1 className="text-xl font-poppins font-semibold text-purple-700">
           My Stories
@@ -68,7 +77,7 @@ function Header() {
         {!user.isLoggedIn && (
           <div>
             <Link passHref href={"http://localhost:5000/auth/login"}>
-              <button className="button button-primary">Login</button>
+              <button className="button button-ghost font-bold  ">Login</button>
             </Link>
           </div>
         )}
@@ -91,7 +100,7 @@ function Header() {
                       <div className="button button-link">My Profile</div>
                     </Link>
                     <div className="button button-link">
-                      <button>Logout</button>
+                      <button onClick={logoutHandler}>Logout</button>
                     </div>
                   </div>
                 </Menu.Item>

@@ -20,7 +20,7 @@ const Home: NextPage = ({ stories }: any) => {
         <Header />
 
         <div className="w-full">
-          <div className="mx-auto flex items-center justify-center p-8 gap-2 flex-wrap">
+          <div className="mx-auto flex items-center justify-center p-8 gap-3 flex-wrap">
             {stories.map((story: any) => {
               return (
                 <div key={story.storyId}>
