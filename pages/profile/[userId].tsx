@@ -68,7 +68,7 @@ export const getServerSideProps: GetServerSideProps = async (
   context: GetServerSidePropsContext
 ) => {
   const { userId }: any = context.params;
-  const res = await fetch(`http://localhost:5000/profile/${userId}`);
+  const res = await fetch(`${process.env.BASE_URL}/profile/${userId}`);
   const data = await res.json();
   console.log(data);
   if (res.status === 200) return { props: { data: data } };

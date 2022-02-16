@@ -96,7 +96,7 @@ export default StoryPage;
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const { storyId }: any = context.params;
   console.log(context.params);
-  const res = await fetch(`http://localhost:5000/story/${storyId}/details`);
+  const res = await fetch(`${process.env.BASE_URL}/story/${storyId}/details`);
   const data = await res.json();
   console.log(data);
   if (data) {

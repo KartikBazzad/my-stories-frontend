@@ -3,11 +3,10 @@ import React, { useEffect, useState } from "react";
 import { Menu } from "@headlessui/react";
 import { useAppDispatch, useAppSelector } from "../../app/myHooks";
 import { useCookies } from "react-cookie";
-import axios from "axios";
 import Image from "next/image";
 import { login, logout } from "../../app/myReducers/userSlice";
 import { useRouter } from "next/router";
-import { logoutUser } from "../../utils/api";
+import { getUserProfile, logoutUser } from "../../utils/api";
 function Header() {
   const router = useRouter();
   const [isLogged, setIsLogged] = useState(false);
@@ -16,13 +15,7 @@ function Header() {
   const token = useCookies(["auth"])[0].auth;
   useEffect(() => {
     if (token) {
-      axios
-        .get("http://localhost:5000/auth/profile", {
-          withCredentials: true,
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        })
+      getUserProfile(token)
         .then(({ data }) => {
           setIsLogged(true);
           return dispatch(login({ ...user, token, isLoggedIn: true, ...data }));
@@ -76,9 +69,19 @@ function Header() {
         </div>
         {!user.isLoggedIn && (
           <div>
-            <Link passHref href={"http://localhost:5000/auth/login"}>
-              <button className="button button-ghost font-bold  ">Login</button>
-            </Link>
+            {/* <Link
+              passHref
+              href={`${process.env.REACT_APP_BASE_URL}/auth/login`}
+            > */}
+            <button
+              onClick={() =>
+                (window.location.href = `${process.env.NEXT_PUBLIC_BASE_URL}/auth/login`)
+              }
+              className="button button-ghost font-bold  "
+            >
+              Login
+            </button>
+            {/* </Link> */}
           </div>
         )}
         {user.isLoggedIn && (

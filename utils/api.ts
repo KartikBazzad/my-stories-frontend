@@ -1,8 +1,17 @@
 import Axios from "axios";
+const baseUrl = `${process.env.NEXT_PUBLIC_BASE_URL}`;
+export function getUserProfile(token: string) {
+  return Axios.get(`${baseUrl}/auth/profile`, {
+    withCredentials: true,
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+}
 
 export function publishUserStory(token: string, data: any) {
   return Axios.post(
-    `http://localhost:5000/story/publish`,
+    `${baseUrl}/story/publish`,
     { data },
     {
       headers: {
@@ -14,7 +23,7 @@ export function publishUserStory(token: string, data: any) {
 }
 
 export function logoutUser(token: string) {
-  return Axios.get("http://localhost:5000/auth/logout", {
+  return Axios.get(`${baseUrl}/auth/logout`, {
     withCredentials: true,
     headers: {
       Authorization: `Bearer ${token}`,

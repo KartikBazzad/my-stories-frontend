@@ -38,7 +38,7 @@ const Home: NextPage = ({ stories }: any) => {
 export default Home;
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const stories = await fetch("http://localhost:5000/story/all");
+  const stories = await fetch(`${process.env.BASE_URL}/story/all`);
   const data = await stories.json();
   console.log(data);
   return {
