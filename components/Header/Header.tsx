@@ -5,10 +5,9 @@ import { useAppDispatch, useAppSelector } from "../../app/myHooks";
 import { useCookies } from "react-cookie";
 import Image from "next/image";
 import { login, logout } from "../../app/myReducers/userSlice";
-import { useRouter } from "next/router";
+
 import { getUserProfile, logoutUser } from "../../utils/api";
 function Header() {
-  const router = useRouter();
   const [isLogged, setIsLogged] = useState(false);
   const user = useAppSelector((state) => state.userReducer);
   const dispatch = useAppDispatch();

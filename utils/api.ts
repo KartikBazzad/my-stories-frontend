@@ -14,6 +14,7 @@ export function publishUserStory(token: string, data: any) {
     `${baseUrl}/story/publish`,
     { data },
     {
+      withCredentials: true,
       headers: {
         Authorization: `Bearer ${token}`,
         "content-Type": "application/json",
