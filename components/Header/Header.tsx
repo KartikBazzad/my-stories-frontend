@@ -6,18 +6,21 @@ import { useCookies } from "react-cookie";
 import Image from "next/image";
 import { login, logout } from "../../app/myReducers/userSlice";
 
-import { getUserProfile, logoutUser } from "../../utils/api";
+import { getUserProfile } from "../../utils/api";
+import Router from "next/router";
 function Header() {
   const [isLogged, setIsLogged] = useState(false);
   const user = useAppSelector((state) => state.userReducer);
   const dispatch = useAppDispatch();
-  const token = useCookies(["auth"])[0].auth;
+  const [token, setToken, removeToken] = useCookies(["auth"]);
   useEffect(() => {
-    if (token) {
-      getUserProfile(token)
+    if (token.auth) {
+      getUserProfile(token.auth)
         .then(({ data }) => {
           setIsLogged(true);
-          return dispatch(login({ ...user, token, isLoggedIn: true, ...data }));
+          return dispatch(
+            login({ ...user, token: token.auth, isLoggedIn: true, ...data })
+          );
         })
         .catch((err) => {
           return;
@@ -26,11 +29,9 @@ function Header() {
   }, [user.isLoggedIn, user.token, isLogged]);
 
   function logoutHandler() {
-    logoutUser(user.token).then(() => {
-      setIsLogged(false);
-      window.location.reload();
-      return dispatch(logout());
-    });
+    removeToken("auth");
+    dispatch(logout());
+    return Router.reload();
   }
   return (
     <div className="p-4 flex w-full items-center justify-evenly shadow  drop-shadow">
