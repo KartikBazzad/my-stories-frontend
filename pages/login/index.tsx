@@ -10,7 +10,11 @@ function LoginPage({ token }: any) {
     Router.push("/");
   }, [token]);
 
-  return <div>Redirecting....</div>;
+  return (
+    <div className="h-96 w-full flex items-center justify-center text-center text-gray-700 font-roboto text-xl font-semibold">
+      Redirecting....
+    </div>
+  );
 }
 
 export default LoginPage;
