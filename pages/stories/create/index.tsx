@@ -8,7 +8,11 @@ import CreateStoryForm from "../../../components/StoryComponents/CreateStoryForm
 function Index() {
   const router = useRouter();
   const user = useAppSelector((state) => state.userReducer);
-  useEffect(() => {}, [user.isLoggedIn]);
+  useEffect(() => {
+    if (!user.token) {
+      router.push("/");
+    }
+  }, [user.isLoggedIn]);
   return (
     <div>
       <Head>

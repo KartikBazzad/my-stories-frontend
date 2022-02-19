@@ -31,7 +31,7 @@ function Header() {
   function logoutHandler() {
     removeToken("auth");
     dispatch(logout());
-    return Router.reload();
+    return Router.push("/");
   }
   return (
     <div className="p-4 flex w-full items-center justify-evenly shadow  drop-shadow">
