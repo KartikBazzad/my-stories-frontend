@@ -101,8 +101,8 @@ function Header() {
                     <Link passHref href={`/profile/${user.userId}`}>
                       <div className="button button-link">My Profile</div>
                     </Link>
-                    <div className="button button-link">
-                      <button onClick={logoutHandler}>Logout</button>
+                    <div onClick={logoutHandler} className="button button-link">
+                      <button>Logout</button>
                     </div>
                   </div>
                 </Menu.Item>
