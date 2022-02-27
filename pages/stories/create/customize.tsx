@@ -18,7 +18,7 @@ function Index() {
   const [isPublished, setIsPublished] = useState(false);
   useEffect(() => {}, [isPublished]);
   function publishStory() {
-    publishUserStory(user.token, story).then(({ data }) => {
+    publishUserStory(user.token as string, story).then(({ data }) => {
       setDetails(data.story);
       setIsPublished(true);
       return;
