@@ -11,6 +11,9 @@ function Index({ data }: any) {
   useEffect(() => {
     console.log(data.stories);
   }, []);
+  function followUser() {
+    console.log("Followed user");
+  }
   return (
     <div>
       <Head>
@@ -23,19 +26,41 @@ function Index({ data }: any) {
         <div>
           <div className="h-40 w-full border flex flex-col sm:flex-row items-center justify-center">
             <div className="max-w-lg w-full flex justify-start items-center">
-              <div>
-                <Image
-                  className="rounded-full"
-                  src={data.photo}
-                  width="80px"
-                  height="80px"
-                  alt={data.username}
-                />
+              <div className="flex w-full flex-col sm:flex-row items-center">
+                <div>
+                  <Image
+                    className="rounded-full"
+                    src={data.photo}
+                    width="80px"
+                    height="80px"
+                    alt={data.username}
+                  />
+                </div>
+                <div>
+                  <h1 className="font-roboto text-2xl font-semibold text-gray-900 opacity-80">
+                    {data.username}
+                  </h1>
+                </div>
               </div>
-              <div>
-                <h1 className="font-roboto text-2xl font-semibold text-gray-900 opacity-80">
-                  {data.username}
-                </h1>
+              <div className="flex w-full flex-col md:flex-row">
+                <div className="flex gap-2">
+                  <div className="text-center">
+                    <p>{data._count.followers}</p>
+                    <p> Followers</p>
+                  </div>
+                  <div className="text-center">
+                    <p>{data._count.followedUser}</p>
+                    <p>Following</p>
+                  </div>
+                </div>
+                <div>
+                  <button
+                    onClick={followUser}
+                    className="button button-ghost drop-shadow"
+                  >
+                    Follow
+                  </button>
+                </div>
               </div>
             </div>
           </div>

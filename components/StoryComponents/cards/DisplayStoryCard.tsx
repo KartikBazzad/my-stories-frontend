@@ -1,11 +1,10 @@
-import Router from "next/router";
 import React, { useEffect, useState } from "react";
 
 function DisplayStoryCard({ details }: any) {
   return (
     <div>
       <>
-        <div className="w-full flex flex-col items-center justify-center">
+        <div className="w-full cursor-pointer flex flex-col items-center justify-center">
           <div
             className={`border w-96 ${details.background} p-1 text-center h-96`}
           >

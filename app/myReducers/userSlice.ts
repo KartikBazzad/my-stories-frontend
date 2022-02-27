@@ -2,18 +2,18 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 export type InitialUserState = {
   isLoggedIn: boolean;
-  userId: string;
-  username: string;
-  photo: string;
-  token: string;
+  userId: string | null;
+  username: string | null;
+  photo: string | null;
+  token: string | null;
 };
 
 const initialState: InitialUserState = {
   isLoggedIn: false,
-  userId: "",
-  username: "",
-  photo: "",
-  token: "",
+  userId: null,
+  username: null,
+  photo: null,
+  token: null,
 };
 
 const userSlice = createSlice({
@@ -31,8 +31,12 @@ const userSlice = createSlice({
       token: "",
       photo: "",
     }),
+    setToken: (state, action: PayloadAction<string>) => ({
+      ...state,
+      token: action.payload,
+    }),
   },
 });
 
-export const { login, logout } = userSlice.actions;
+export const { login, logout, setToken } = userSlice.actions;
 export default userSlice.reducer;

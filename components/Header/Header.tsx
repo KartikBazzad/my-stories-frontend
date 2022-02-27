@@ -8,29 +8,30 @@ import { login, logout } from "../../app/myReducers/userSlice";
 
 import { getUserProfile } from "../../utils/api";
 import Router from "next/router";
+import { resetStateAction } from "../../app/myActions/resetState";
 function Header() {
   const [isLogged, setIsLogged] = useState(false);
   const user = useAppSelector((state) => state.userReducer);
   const dispatch = useAppDispatch();
   const [token, setToken, removeToken] = useCookies(["auth"]);
   useEffect(() => {
-    if (token.auth) {
-      getUserProfile(token.auth)
-        .then(({ data }) => {
-          setIsLogged(true);
-          return dispatch(
-            login({ ...user, token: token.auth, isLoggedIn: true, ...data })
-          );
-        })
-        .catch((err) => {
-          return;
-        });
-    }
-  }, [user.isLoggedIn, user.token, isLogged]);
+    // if (token.auth) {
+    //   getUserProfile(token.auth)
+    //     .then(({ data }) => {
+    //       setIsLogged(true);
+    //       return dispatch(
+    //         login({ ...user, token: token.auth, isLoggedIn: true, ...data })
+    //       );
+    //     })
+    //     .catch((err) => {
+    //       return;
+    //     });
+    // }
+  }, [user.isLoggedIn, isLogged]);
 
   function logoutHandler() {
     removeToken("auth");
-    dispatch(logout());
+    dispatch(resetStateAction());
     return Router.push("/");
   }
   return (
@@ -89,8 +90,8 @@ function Header() {
             <Menu>
               <Menu.Button>
                 <Image
-                  src={user.photo}
-                  alt={user.username}
+                  src={user.photo as string}
+                  alt={user.username as string}
                   width="40px"
                   className="rounded-full"
                   height="40px"

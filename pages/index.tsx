@@ -1,13 +1,10 @@
 import type { GetServerSideProps, NextPage } from "next";
 import Head from "next/head";
-
 import { useEffect } from "react";
 import FullDetailsCard from "../components/Groups/FullDetailsCard";
 import Header from "../components/Header/Header";
-import DisplayStoryCard from "../components/StoryComponents/cards/DisplayStoryCard";
 
 const Home: NextPage = ({ stories }: any) => {
-  useEffect(() => {}, []);
   return (
     <div>
       <Head>
@@ -18,7 +15,6 @@ const Home: NextPage = ({ stories }: any) => {
 
       <main className="">
         <Header />
-
         <div className="w-full">
           <div className="mx-auto flex items-center justify-center p-8 gap-3 flex-wrap">
             {stories.map((story: any) => {

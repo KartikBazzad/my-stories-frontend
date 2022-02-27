@@ -31,3 +31,15 @@ export function logoutUser(token: string) {
     },
   });
 }
+
+export async function getStoryLike(token: string, storyId: string) {
+  console.log(storyId);
+  return await Axios.get(
+    `${process.env.NEXT_PUBLIC_BASE_URL}/story/${storyId}/isliked`,
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  );
+}

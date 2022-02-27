@@ -1,12 +1,10 @@
 import Router from "next/router";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../../app/myHooks";
-import { publishUserStory } from "../../utils/api";
 
 function FinalStory() {
   const story = useAppSelector((state) => state.storyReducer);
   const user = useAppSelector((state) => state.userReducer);
-  const dispatch = useAppDispatch();
   useEffect(() => {
     if (!story.content && !story.caption && !story.title) {
       Router.push("/stories/create");
@@ -14,13 +12,13 @@ function FinalStory() {
   }, [story]);
 
   useEffect(() => {
-    if (!user.isLoggedIn) {
+    if (!user.token) {
       console.log(`user not logged in`);
       Router.push("/");
     } else {
       console.log("User logged in");
     }
-  }, [user.isLoggedIn]);
+  }, [user.token]);
 
   return (
     <div>
